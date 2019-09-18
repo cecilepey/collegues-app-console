@@ -11,7 +11,6 @@ var rl = readline.createInterface({
 
 var start = function () {
 
-
     rl.question("Quel est votre login? ", function (login) {
 
         rl.question("Quel est votre mot de passe? ", function (mdp) {
@@ -28,42 +27,36 @@ var start = function () {
 
                     console.log("Vous êtes bien connecté ! \n")
 
-
                     var menuFonction = function () {
 
                         rl.question(menu, function (saisie) {
-
-
-
                             if (saisie === '1') {
                                 rl.question(">> Recherche en cours du nom : \n", function (nom) {
                                     service.rechercheMatricule(nom, function (result) {
                                         var matricule = result;
 
-                                        var tailleMatricule = matricule.length; 
+                                        var tailleMatricule = matricule.length;
 
-                                        var compteur = 0; 
+                                        var compteur = 0;
 
                                         matricule.forEach(function (element) {
-                                            compteur++; 
+                                            compteur++;
 
                                             service.recherInfoParMatricule(element, function (result) {
                                                 console.log(result);
-                                                if(compteur === tailleMatricule){
+                                                if (compteur === tailleMatricule) {
                                                     menuFonction();
                                                 }
                                             }, function (result) {
                                                 console.log(result)
-                                                if(compteur === tailleMatricule){
+                                                if (compteur === tailleMatricule) {
                                                     menuFonction();
                                                 }
                                             }
-                                        
-
                                             )
                                         })
                                     })
-                                    
+
                                 });
 
                             } else if (saisie === '2') {
@@ -132,7 +125,5 @@ var start = function () {
 
     })
 }
-
-
 
 exports.start = start;
