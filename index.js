@@ -1,5 +1,10 @@
-const presentation = require(`./presentation.js`)
-const service = require(`./service.js`)
+const {Presentation} = require(`./presentation.js`)
+const { Service}  = require(`./service.js`)
+
+const service = new Service(); 
+const presentation = new Presentation(service); 
+
+
 
 console.log(`** Administration Collegues **`);
 

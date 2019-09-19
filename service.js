@@ -43,7 +43,7 @@ class Service {
                 method: `PATCH`,
                 json: true,
                 body: {
-                    email: email
+                    email
                 }
             });
     }
@@ -53,7 +53,7 @@ class Service {
                 method: `PATCH`,
                 json: true,
                 body: {
-                    photoUrl: photoUrl
+                    photoUrl
                 }
             });
     }
