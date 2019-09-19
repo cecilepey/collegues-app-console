@@ -1,14 +1,18 @@
 // récupération du module `readline`
 const readline = require(`readline`);
-const service = require(`./service.js`)
+const { Service}  = require(`./service.js`)
 
+const service = new Service(); 
 
 // création d'un objet `rl` permettant de récupérer la saisie utilisateur
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
-const start = function () {
+
+
+
+const start =  () => {
     rl.question(`Quel est votre login? `, (login) => {
         rl.question(`Quel est votre mot de passe? `, (mdp) => {
             service.authentification(login, mdp)
@@ -23,7 +27,7 @@ const start = function () {
 `;
                     console.log(`Vous êtes bien connecté
                     `)
-                    const menuFonction = function () {
+                    const menuFonction =  () => {
                         rl.question(menu, (saisie) => {
                             if (saisie === '1') {
                                 rl.question(`>> Recherche en cours du nom : `, (nom) => {
