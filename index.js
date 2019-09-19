@@ -1,6 +1,6 @@
-var presentation = require('./presentation.js')
-var service = require('./service.js')
+const presentation = require(`./presentation.js`)
+const service = require(`./service.js`)
 
-console.log('** Administration Collegues **');
+console.log(`** Administration Collegues **`);
 
 presentation.start(); 
