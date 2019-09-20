@@ -31,19 +31,12 @@ import {Collegue} from './domain';
                     .map((url:string) => request(url, { json: true })));
             });
     }
-    creationCollegue(nom:string, prenoms:string, email:string, dateDeNaissance:string, photoUrl:string, motDePasse:string) {
+    creationCollegue(collegue:Collegue) {
         return request('https://cecile-top-collegue.herokuapp.com/collegues/',
             {
                 method: 'POST',
                 json: true,
-                body: {
-                    nom,
-                    prenoms,
-                    email,
-                    dateDeNaissance,
-                    photoUrl,
-                    motDePasse
-                }
+                body: collegue
             });
     }
     modifierEmail(matricule:string, email:string) {
