@@ -1,28 +1,37 @@
-request = require('request-promise-native').defaults({ jar: true });
-class Service {
+import r from 'request-promise-native'; 
+const request = r.defaults({ jar: true })
+import {Collegue} from './domain'; 
+
+
+
+
+//request = require('request-promise-native').defaults({ jar: true });
+ class Service {
+     
+
 
     constructor() {
     }
-    authentification(login, mdp) {
+    authentification(email:string, motDePasse:string) {
         return request(`https://cecile-top-collegue.herokuapp.com/auth`,
             {
                 method: `POST`,
                 json: true,
                 body: {
-                    email: login,
-                    motDePasse: mdp
+                    email,
+                    motDePasse
                 }
             });
     }
-    rechercheMatricule(nom) {
+    rechercheMatricule(nom:string):Promise<Collegue[]> {
         return request(`https://cecile-top-collegue.herokuapp.com/collegues?nom=${nom}`, { json: true })
-            .then(tabMatricules => {
+            .then((tabMatricules:string[]) => {
                 return Promise.all(tabMatricules
-                    .map(matricule => `https://cecile-top-collegue.herokuapp.com/collegues/${matricule}`)
-                    .map(url => request(url, { json: true })));
+                    .map((matricule:string) => `https://cecile-top-collegue.herokuapp.com/collegues/${matricule}`)
+                    .map((url:string) => request(url, { json: true })));
             });
     }
-    creationCollegue(nom, prenoms, email, dateDeNaissance, photoUrl, motDePasse) {
+    creationCollegue(nom:string, prenoms:string, email:string, dateDeNaissance:string, photoUrl:string, motDePasse:string) {
         return request('https://cecile-top-collegue.herokuapp.com/collegues/',
             {
                 method: 'POST',
@@ -37,7 +46,7 @@ class Service {
                 }
             });
     }
-    modifierEmail(matricule, email) {
+    modifierEmail(matricule:string, email:string) {
         return request(`https://cecile-top-collegue.herokuapp.com/collegues/${matricule}`,
             {
                 method: `PATCH`,
@@ -47,7 +56,7 @@ class Service {
                 }
             });
     }
-    modifierPhoto(matricule, photoUrl) {
+    modifierPhoto(matricule:string, photoUrl:string) {
         return request(`https://cecile-top-collegue.herokuapp.com/collegues/${matricule}`,
             {
                 method: `PATCH`,
@@ -60,12 +69,13 @@ class Service {
 
 }
 
+/*
 module.exports = {
     Service
 }
+*/
 
-
-
+export default Service ; 
 
 
 
